@@ -102,7 +102,7 @@ export default function Catalogo() {
         <button className="btn-ghost mt-2 w-full py-2">Aplicar precio</button>
       </form>
       <label className="flex cursor-pointer items-center gap-3 text-sm text-ink-200">
-        <input type="checkbox" className="size-4 accent-[#ff6a1a]" checked={!!f.enStock} onChange={(e) => set({ enStock: e.target.checked ? "1" : undefined })} />
+        <input type="checkbox" className="size-4 accent-[#e5322b]" checked={!!f.enStock} onChange={(e) => set({ enStock: e.target.checked ? "1" : undefined })} />
         Solo productos con stock
       </label>
     </div>

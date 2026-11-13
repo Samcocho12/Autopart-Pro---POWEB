@@ -20,8 +20,8 @@ export default function AdminLayout() {
 
   return (
     <div className="min-h-screen lg:grid lg:grid-cols-[250px_1fr]">
-      <aside className="sticky top-0 z-20 flex flex-col border-b border-ink-700 bg-ink-950/90 backdrop-blur lg:h-screen lg:border-r lg:border-b-0">
-        <div className="flex items-center justify-between px-5 py-4 lg:py-6">
+      <aside className="sticky top-0 z-20 flex flex-col border-b border-ink-700 bg-ink-950 lg:h-screen lg:border-r lg:border-b-0">
+        <div className="flex items-center justify-between gap-3 px-5 py-4 lg:flex-col lg:items-start lg:py-6">
           <Logo />
           <span className="chip border-ink-600 text-[10px] tracking-wider text-ink-300 uppercase">Admin</span>
         </div>
@@ -40,7 +40,7 @@ export default function AdminLayout() {
         <div className="mt-auto hidden space-y-1 border-t border-ink-800 p-3 lg:block">
           <a href="/" target="_blank" className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-ink-300 hover:bg-ink-800"><ExternalLink className="size-4" />Ver tienda</a>
           <div className="flex items-center gap-3 rounded-xl px-3 py-2.5">
-            <div className="grid size-9 place-items-center rounded-full bg-gradient-to-br from-signal to-amber-400 font-display font-bold text-ink-950">{usuario.nombre[0]}</div>
+            <div className="grid size-9 place-items-center rounded-full bg-gradient-to-br from-signal to-signal-deep font-display font-bold text-ink-950">{usuario.nombre[0]}</div>
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-medium">{usuario.nombre}</p>
               <p className="text-xs capitalize text-ink-400">{usuario.rol}</p>

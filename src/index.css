@@ -1,45 +1,44 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Times New Roman", Times, "Liberation Serif", serif;
+  --font-display: "Archivo", "Inter", "Arial Black", system-ui, sans-serif;
   --font-sans: "Times New Roman", Times, "Liberation Serif", serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
-  --color-ink-950: #07080a;
-  --color-ink-900: #0a0c0f;
-  --color-ink-850: #0f1216;
-  --color-ink-800: #13171c;
-  --color-ink-700: #1b2027;
-  --color-ink-600: #262d36;
-  --color-ink-500: #3a434f;
-  --color-ink-400: #5d6876;
-  --color-ink-300: #8b95a3;
-  --color-ink-200: #b9c1cc;
-  --color-ink-100: #e6eaef;
+  /* Escala "ink" invertida: 950 = blanco, 100 = casi negro (tema claro) */
+  --color-ink-950: #ffffff;
+  --color-ink-900: #f4f3ef;
+  --color-ink-850: #ffffff;
+  --color-ink-800: #f8f7f4;
+  --color-ink-700: #e6e3dd;
+  --color-ink-600: #d4d0c8;
+  --color-ink-500: #aaa59c;
+  --color-ink-400: #7a766f;
+  --color-ink-300: #57534d;
+  --color-ink-200: #34322e;
+  --color-ink-100: #141414;
 
-  --color-signal: #ff6a1a;
-  --color-signal-soft: #ff8a4a;
-  --color-signal-deep: #d9500a;
-  --color-ok: #3ddc97;
-  --color-warn: #ffc23d;
-  --color-danger: #ff4d5e;
-  --color-info: #5cb8ff;
+  --color-carbon: #141414;
+  --color-tile: #17181b;
+
+  --color-signal: #e5322b;
+  --color-signal-soft: #f0453e;
+  --color-signal-deep: #b8221c;
+  --color-ok: #15803d;
+  --color-warn: #b45309;
+  --color-danger: #dc2626;
+  --color-info: #1d6fb8;
 }
 
 @layer base {
-  html { color-scheme: dark; }
-  body {
-    @apply bg-ink-900 text-ink-100 font-sans antialiased;
-    background-image:
-      radial-gradient(1200px 600px at 85% -10%, rgb(255 106 26 / 0.07), transparent 60%),
-      radial-gradient(900px 500px at -10% 10%, rgb(92 184 255 / 0.05), transparent 60%);
-    background-attachment: fixed;
-  }
-  ::selection { background: rgb(255 106 26 / 0.35); }
+  html { color-scheme: light; }
+  body { @apply bg-ink-900 text-ink-100 font-sans antialiased; }
+  h1, h2, h3, .font-display { letter-spacing: -0.02em; }
+  ::selection { background: rgb(229 50 43 / 0.25); }
   input, select, textarea { font: inherit; }
 }
 
-@utility card { @apply rounded-2xl border border-ink-700 bg-ink-850/80 backdrop-blur-sm; }
+@utility card { @apply rounded-2xl border border-ink-700 bg-ink-850 shadow-[0_1px_2px_rgba(0,0,0,0.04)]; }
 @utility input {
   @apply w-full rounded-xl border border-ink-600 bg-ink-800 px-3.5 py-2.5 text-sm text-ink-100 placeholder:text-ink-400 outline-none transition focus:border-signal focus:ring-2 focus:ring-signal/25 disabled:opacity-50;
 }
@@ -47,20 +46,25 @@
 @utility btn {
   @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50 active:scale-[0.98];
 }
-@utility btn-primary { @apply btn bg-signal text-ink-950 hover:bg-signal-soft shadow-[0_8px_30px_-8px_rgb(255_106_26/0.6)]; }
+@utility btn-primary { @apply btn bg-signal text-ink-950 hover:bg-signal-soft shadow-[0_10px_30px_-10px_rgb(229_50_43/0.55)]; }
 @utility btn-ghost { @apply btn border border-ink-600 bg-ink-800 text-ink-100 hover:border-ink-500 hover:bg-ink-700; }
 @utility btn-danger { @apply btn border border-danger/40 bg-danger/10 text-danger hover:bg-danger/20; }
 @utility chip { @apply inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-medium; }
 @utility mono { @apply font-mono tracking-tight; }
 @utility grid-bg {
-  background-image: linear-gradient(rgb(255 255 255 / 0.03) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / 0.03) 1px, transparent 1px);
+  background-image: linear-gradient(rgb(0 0 0 / 0.045) 1px, transparent 1px), linear-gradient(90deg, rgb(0 0 0 / 0.045) 1px, transparent 1px);
   background-size: 32px 32px;
 }
+@utility grid-bg-dark {
+  background-image: linear-gradient(rgb(255 255 255 / 0.04) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+@utility kicker { @apply flex items-center gap-2.5 font-display text-[11px] font-bold tracking-[0.28em] text-ink-100 uppercase; }
 @utility table-base {
   @apply w-full text-left text-sm;
   & th { @apply border-b border-ink-700 px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-ink-400; }
   & td { @apply border-b border-ink-800 px-4 py-3 align-middle; }
-  & tbody tr { @apply transition hover:bg-ink-800/60; }
+  & tbody tr { @apply transition hover:bg-ink-800; }
 }
 
 @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }

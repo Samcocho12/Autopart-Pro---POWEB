@@ -6,16 +6,16 @@ import {
 import type { EstadoPedido } from "../lib/types";
 import { imagenProducto } from "../lib/imagenes";
 
-export const CATEGORIA_UI: Record<string, { icon: LucideIcon; tono: string }> = {
-  frenos: { icon: CircleDot, tono: "from-red-500/25 to-orange-500/5 text-red-300" },
-  filtros: { icon: Filter, tono: "from-sky-500/25 to-cyan-500/5 text-sky-300" },
-  encendido: { icon: Zap, tono: "from-yellow-400/25 to-amber-500/5 text-yellow-300" },
-  suspension: { icon: Waves, tono: "from-violet-500/25 to-indigo-500/5 text-violet-300" },
-  motor: { icon: Cog, tono: "from-orange-500/30 to-amber-600/5 text-orange-300" },
-  electrico: { icon: BatteryCharging, tono: "from-emerald-500/25 to-teal-500/5 text-emerald-300" },
-  transmision: { icon: Settings2, tono: "from-slate-400/25 to-zinc-500/5 text-slate-200" },
-  lubricantes: { icon: Droplets, tono: "from-amber-400/30 to-yellow-600/5 text-amber-200" },
-  carroceria: { icon: Car, tono: "from-blue-500/25 to-sky-500/5 text-blue-300" },
+export const CATEGORIA_UI: Record<string, { icon: LucideIcon; tono: string; color: string }> = {
+  frenos: { icon: CircleDot, tono: "from-red-500/30 to-transparent", color: "text-red-600" },
+  filtros: { icon: Filter, tono: "from-sky-500/25 to-transparent", color: "text-sky-600" },
+  encendido: { icon: Zap, tono: "from-yellow-400/25 to-transparent", color: "text-amber-500" },
+  suspension: { icon: Waves, tono: "from-violet-500/25 to-transparent", color: "text-violet-600" },
+  motor: { icon: Cog, tono: "from-orange-500/30 to-transparent", color: "text-orange-600" },
+  electrico: { icon: BatteryCharging, tono: "from-emerald-500/25 to-transparent", color: "text-emerald-600" },
+  transmision: { icon: Settings2, tono: "from-slate-400/25 to-transparent", color: "text-slate-600" },
+  lubricantes: { icon: Droplets, tono: "from-amber-400/30 to-transparent", color: "text-amber-600" },
+  carroceria: { icon: Car, tono: "from-blue-500/25 to-transparent", color: "text-blue-600" },
 };
 
 export function CategoriaIcono({ slug, className = "size-5" }: { slug: string; className?: string }) {
@@ -31,8 +31,8 @@ export function ProductoVisual({ slug, sku, nombre, imagen, size = "md" }: { slu
   const src = nombre || imagen ? imagenProducto(nombre ?? "", imagen) : null;
   const esFoto = Boolean(imagen);
   return (
-    <div className={`relative grid shrink-0 place-items-center overflow-hidden bg-gradient-to-br ${ui?.tono ?? "from-ink-600 to-ink-800 text-ink-200"} ${dims}`}>
-      <div className="grid-bg absolute inset-0 opacity-60" />
+    <div className={`relative grid shrink-0 place-items-center overflow-hidden bg-tile bg-gradient-to-br text-white ${ui?.tono ?? "from-white/10 to-transparent"} ${dims}`}>
+      <div className="grid-bg-dark absolute inset-0 opacity-70" />
       <div className="absolute -right-6 -bottom-6 size-24 rounded-full border border-white/5" />
       {src ? (
         <img
@@ -95,7 +95,7 @@ export function Modal({ abierto, onClose, titulo, children, ancho = "max-w-lg" }
   }, [abierto, onClose]);
   if (!abierto) return null;
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/70 p-4 pt-[8vh] backdrop-blur-sm" onMouseDown={onClose}>
+    <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/45 p-4 pt-[8vh] backdrop-blur-sm" onMouseDown={onClose}>
       <div className={`card animate-rise w-full ${ancho} bg-ink-850 p-6 shadow-2xl`} onMouseDown={(e) => e.stopPropagation()}>
         <div className="mb-5 flex items-center justify-between">
           <h2 className="font-display text-xl font-bold">{titulo}</h2>
@@ -124,16 +124,20 @@ export function Paginacion({ page, pages, onChange }: { page: number; pages: num
   );
 }
 
-export function Logo({ compacto = false }: { compacto?: boolean }) {
+export function Logo({ compacto = false, claro = false }: { compacto?: boolean; claro?: boolean }) {
   return (
     <span className="flex items-center gap-2.5">
-      <svg viewBox="0 0 64 64" className="size-8">
-        <path d="M32 8l20.8 12v24L32 56 11.2 44V20z" fill="none" stroke="#ff6a1a" strokeWidth="5" strokeLinejoin="round" />
-        <circle cx="32" cy="32" r="8" fill="#ff6a1a" />
+      <svg viewBox="0 0 64 64" className="size-9 shrink-0">
+        <path d="M32 6l22.5 13v26L32 58 9.5 45V19z" fill="#e5322b" />
+        <path d="M32 18l12 7v14l-12 7-12-7V25z" fill="none" stroke="#fff" strokeWidth="5" strokeLinejoin="round" />
+        <circle cx="32" cy="32" r="4.5" fill="#fff" />
       </svg>
       {!compacto && (
-        <span className="font-display text-lg leading-none font-extrabold tracking-tight">
-          AutoPart<span className="text-signal"> Pro</span>
+        <span className="leading-none whitespace-nowrap">
+          <span className={`block font-display text-[22px] font-black tracking-tight italic ${claro ? "text-white" : "text-ink-100"}`}>
+            AUTOPART<span className="text-signal"> PRO</span>
+          </span>
+          <span className={`mt-1 block font-display text-[8px] font-bold tracking-[0.32em] ${claro ? "text-white/60" : "text-ink-400"}`}>REPUESTOS · INVENTARIO · VENTAS</span>
         </span>
       )}
     </span>

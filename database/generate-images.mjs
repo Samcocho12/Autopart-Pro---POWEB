@@ -11,15 +11,15 @@ mkdirSync(out, { recursive: true });
 const L = "#eef2f6";      // trazo principal
 const M = "#9aa6b4";      // metal medio
 const D = "#3a434f";      // metal oscuro
-const A = "#ff6a1a";      // acento
-const A2 = "#ffb37a";     // acento claro
+const A = "#e5322b";      // acento
+const A2 = "#ff9a8f";     // acento claro
 const S = `stroke="${L}" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"`;
 const s = (w = 3, c = L) => `stroke="${c}" stroke-width="${w}" stroke-linejoin="round" stroke-linecap="round"`;
 
 const defs = `<defs>
   <linearGradient id="met" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dfe5ec"/><stop offset=".5" stop-color="#9aa6b4"/><stop offset="1" stop-color="#5d6876"/></linearGradient>
   <linearGradient id="metH" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5d6876"/><stop offset=".45" stop-color="#e6eaef"/><stop offset="1" stop-color="#5d6876"/></linearGradient>
-  <linearGradient id="acc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff9a5c"/><stop offset="1" stop-color="#d9500a"/></linearGradient>
+  <linearGradient id="acc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6b5f"/><stop offset="1" stop-color="#b8221c"/></linearGradient>
   <linearGradient id="dark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a434f"/><stop offset="1" stop-color="#1b2027"/></linearGradient>
   <radialGradient id="glass" cx=".35" cy=".35" r=".8"><stop offset="0" stop-color="#ffffff" stop-opacity=".9"/><stop offset=".5" stop-color="#cfe6ff" stop-opacity=".35"/><stop offset="1" stop-color="#5cb8ff" stop-opacity=".15"/></radialGradient>
   <filter id="sh" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="9" flood-color="#000" flood-opacity=".45"/></filter>
@@ -293,7 +293,7 @@ const imgs = {
   "aceite": svg(`
     <path d="M100 50 h90 l30 30 v120 q0 14 -14 14 h-120 q-14 0 -14 -14 v-120 q0 -16 14 -22z" fill="url(#acc)" ${S}/>
     <rect x="166" y="22" width="34" height="30" rx="5" fill="url(#dark)" ${S}/>
-    <path d="M210 70 q24 0 24 30 v40 q0 14 -14 14" ${s(10, "#d9500a")}/>
+    <path d="M210 70 q24 0 24 30 v40 q0 14 -14 14" ${s(10, "#b8221c")}/>
     <rect x="100" y="104" width="100" height="70" rx="6" fill="#fff" opacity=".92"/>
     <text x="150" y="134" text-anchor="middle" font-family="Arial Black,Arial" font-size="18" fill="${D}">MOTOR</text>
     <text x="150" y="158" text-anchor="middle" font-family="Arial" font-weight="700" font-size="13" fill="${A}">OIL · 1 QT</text>`),
