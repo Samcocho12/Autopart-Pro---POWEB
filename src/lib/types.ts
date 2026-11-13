@@ -15,6 +15,7 @@ export interface ProductoResumen {
   fabricante_id?: number;
   precio_costo?: number;
   proveedor_id?: number | null;
+  vehiculo_compatible?: string | null;
 }
 
 export interface Compatibilidad {

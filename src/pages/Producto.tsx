@@ -31,7 +31,7 @@ export default function Producto() {
       <button onClick={() => nav(-1)} className="mb-6 inline-flex items-center gap-1 text-sm text-ink-300 hover:text-signal"><ChevronLeft className="size-4" />Volver</button>
       <div className="grid gap-10 lg:grid-cols-2">
         <div className="animate-rise">
-          <ProductoVisual slug={p.categoria_slug} sku={p.sku} size="lg" />
+          <ProductoVisual slug={p.categoria_slug} sku={p.sku} nombre={p.nombre} imagen={p.imagen_url} size="lg" />
         </div>
         <div className="animate-rise" style={{ animationDelay: "80ms" }}>
           <div className="flex flex-wrap items-center gap-2 text-xs">

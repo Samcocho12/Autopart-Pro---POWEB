@@ -53,7 +53,10 @@ export class ProductoModel {
     const base = `FROM productos p JOIN categorias c ON c.id = p.categoria_id JOIN fabricantes f ON f.id = p.fabricante_id ${sql}`;
     const campos = `p.id, p.sku, p.nombre, p.precio_venta, p.stock, p.stock_minimo, p.imagen_url, p.activo, p.ubicacion,
       c.id AS categoria_id, c.nombre AS categoria, c.slug AS categoria_slug, f.id AS fabricante_id, f.nombre AS fabricante
-      ${admin ? ", p.precio_costo, p.proveedor_id" : ""}`;
+      ${admin ? ", p.precio_costo, p.proveedor_id" : ""}
+      ${f.modelo ? `, (SELECT CONCAT(IF(mv2.nombre LIKE CONCAT(ma2.nombre, '%'), mv2.nombre, CONCAT(ma2.nombre, ' ', mv2.nombre)), ' ', co2.anio_desde, '-', co2.anio_hasta)
+          FROM compatibilidades co2 JOIN modelos_vehiculo mv2 ON mv2.id = co2.modelo_id JOIN marcas_vehiculo ma2 ON ma2.id = mv2.marca_id
+          WHERE co2.producto_id = p.id AND co2.modelo_id = ${Number(f.modelo)} ${f.anio ? `AND ${Number(f.anio)} BETWEEN co2.anio_desde AND co2.anio_hasta` : ""} LIMIT 1) AS vehiculo_compatible` : ""}`;
 
     const [items, [{ total }], facet] = await Promise.all([
       query(`SELECT ${campos} ${base} ORDER BY ${orden} LIMIT ? OFFSET ?`, [...params, limit, (page - 1) * limit]),

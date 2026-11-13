@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" fill="none"><defs>
+  <linearGradient id="met" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dfe5ec"/><stop offset=".5" stop-color="#9aa6b4"/><stop offset="1" stop-color="#5d6876"/></linearGradient>
+  <linearGradient id="metH" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5d6876"/><stop offset=".45" stop-color="#e6eaef"/><stop offset="1" stop-color="#5d6876"/></linearGradient>
+  <linearGradient id="acc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff9a5c"/><stop offset="1" stop-color="#d9500a"/></linearGradient>
+  <linearGradient id="dark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a434f"/><stop offset="1" stop-color="#1b2027"/></linearGradient>
+  <radialGradient id="glass" cx=".35" cy=".35" r=".8"><stop offset="0" stop-color="#ffffff" stop-opacity=".9"/><stop offset=".5" stop-color="#cfe6ff" stop-opacity=".35"/><stop offset="1" stop-color="#5cb8ff" stop-opacity=".15"/></radialGradient>
+  <filter id="sh" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="9" flood-color="#000" flood-opacity=".45"/></filter>
+</defs><g filter="url(#sh)">
+    <circle cx="160" cy="92" r="58" fill="url(#glass)" stroke="#eef2f6" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M140 92 q10 -24 20 0 q10 24 20 0" stroke="#ff6a1a" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M140 92 v40 M180 92 v40" stroke="#9aa6b4" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+    <rect x="128" y="146" width="64" height="20" rx="4" fill="url(#metH)" stroke="#eef2f6" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+    <rect x="138" y="166" width="44" height="30" fill="url(#met)" stroke="#eef2f6" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M148 196 v18 M172 196 v18" stroke="#9aa6b4" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M100 40 l-14 -14 M220 40 l14 -14 M160 20 v-14" stroke="#ffb37a" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/></g></svg>

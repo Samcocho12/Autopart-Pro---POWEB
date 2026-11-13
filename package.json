@@ -11,7 +11,8 @@
     "dev:web": "vite",
     "db:seed": "node database/generate-seed.mjs",
     "db:setup": "node database/setup.mjs",
-    "start": "node server/index.js"
+    "start": "node server/index.js",
+    "img:generate": "node database/generate-images.mjs"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",

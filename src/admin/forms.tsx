@@ -27,7 +27,7 @@ export function ProductoFormModal({ abierto, onClose, producto, onGuardado }: {
     const body: Record<string, unknown> = {
       sku: d.sku.trim().toUpperCase(), nombre: d.nombre.trim(), descripcion: d.descripcion || null,
       categoria_id: Number(d.categoria_id), fabricante_id: Number(d.fabricante_id), proveedor_id: d.proveedor_id ? Number(d.proveedor_id) : null,
-      precio_costo: Number(d.precio_costo || 0), precio_venta: Number(d.precio_venta), stock_minimo: Number(d.stock_minimo), ubicacion: d.ubicacion || null,
+      precio_costo: Number(d.precio_costo || 0), precio_venta: Number(d.precio_venta), stock_minimo: Number(d.stock_minimo), ubicacion: d.ubicacion || null, imagen_url: d.imagen_url?.trim() || null,
     };
     if (!producto) body.stock = Number(d.stock || 0);
     setGuardando(true); setError(null);
@@ -58,6 +58,7 @@ export function ProductoFormModal({ abierto, onClose, producto, onGuardado }: {
           <div><label className="label">Precio de venta (IVA incl.)</label><input name="precio_venta" type="number" min={0} step={100} required defaultValue={producto?.precio_venta} className="input mono" /></div>
           {!producto && <div><label className="label">Stock inicial</label><input name="stock" type="number" min={0} defaultValue={0} className="input mono" /></div>}
           <div><label className="label">Stock mínimo (alerta)</label><input name="stock_minimo" type="number" min={0} required defaultValue={producto?.stock_minimo ?? 5} className="input mono" /></div>
+          <div className="sm:col-span-2"><label className="label">Foto del producto (URL, opcional)</label><input name="imagen_url" type="url" defaultValue={producto?.imagen_url ?? ""} className="input" placeholder="https://… — si se deja vacío se usa la ilustración del tipo de repuesto" /></div>
           {error && <div className="sm:col-span-2"><ErrorBox mensaje={error} /></div>}
           <div className="flex justify-end gap-2 sm:col-span-2">
             <button type="button" className="btn-ghost" onClick={onClose}>Cancelar</button>

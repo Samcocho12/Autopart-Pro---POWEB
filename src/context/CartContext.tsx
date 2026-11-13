@@ -9,6 +9,7 @@ export interface CartItem {
   stock: number;
   categoria_slug: string;
   fabricante: string;
+  imagen_url?: string | null;
   cantidad: number;
 }
 
@@ -47,7 +48,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       setItems((prev) => {
         const ex = prev.find((i) => i.id === p.id);
         if (ex) return prev.map((i) => (i.id === p.id ? { ...i, cantidad: Math.min(i.stock, i.cantidad + cantidad) } : i));
-        return [...prev, { id: p.id, sku: p.sku, nombre: p.nombre, precio: Number(p.precio_venta), stock: p.stock, categoria_slug: p.categoria_slug, fabricante: p.fabricante, cantidad: Math.min(p.stock, cantidad) }];
+        return [...prev, { id: p.id, sku: p.sku, nombre: p.nombre, precio: Number(p.precio_venta), stock: p.stock, categoria_slug: p.categoria_slug, fabricante: p.fabricante, imagen_url: p.imagen_url, cantidad: Math.min(p.stock, cantidad) }];
       });
       setOpen(true);
     },
