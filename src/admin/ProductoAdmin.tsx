@@ -49,7 +49,7 @@ export default function ProductoAdmin() {
 
       <div className="grid gap-6 xl:grid-cols-[320px_1fr]">
         <div className="space-y-4">
-          <ProductoVisual slug={p.categoria_slug} sku={p.sku} size="lg" />
+          <ProductoVisual slug={p.categoria_slug} sku={p.sku} nombre={p.nombre} imagen={p.imagen_url} size="lg" />
           <div className="card divide-y divide-ink-800 text-sm">
             {[
               ["Estado", p.activo ? <span className="chip border-ok/30 bg-ok/10 text-ok">Activo</span> : <span className="chip border-ink-500 text-ink-300">Inactivo</span>],

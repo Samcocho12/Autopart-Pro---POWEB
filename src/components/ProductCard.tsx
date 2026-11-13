@@ -7,14 +7,15 @@ import { useCart } from "../context/CartContext";
 
 export default function ProductCard({ p, i = 0 }: { p: ProductoResumen; i?: number }) {
   const { add } = useCart();
-  const { titulo, vehiculo } = partirNombre(p.nombre);
+  const { titulo, vehiculo: vehiculoNombre } = partirNombre(p.nombre);
+  const vehiculo = p.vehiculo_compatible ?? vehiculoNombre;
   return (
     <article
       className="card group animate-rise flex flex-col overflow-hidden p-3 transition hover:-translate-y-0.5 hover:border-ink-500 hover:shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)]"
       style={{ animationDelay: `${Math.min(i, 12) * 35}ms` }}
     >
       <Link to={`/producto/${p.id}`} className="block">
-        <ProductoVisual slug={p.categoria_slug} sku={p.sku} />
+        <ProductoVisual slug={p.categoria_slug} sku={p.sku} nombre={p.nombre} imagen={p.imagen_url} />
       </Link>
       <div className="flex flex-1 flex-col px-1 pt-3">
         <div className="mb-1.5 flex items-center justify-between gap-2 text-[11px] uppercase tracking-wider">

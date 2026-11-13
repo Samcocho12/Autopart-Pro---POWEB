@@ -4,6 +4,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import type { EstadoPedido } from "../lib/types";
+import { imagenProducto } from "../lib/imagenes";
 
 export const CATEGORIA_UI: Record<string, { icon: LucideIcon; tono: string }> = {
   frenos: { icon: CircleDot, tono: "from-red-500/25 to-orange-500/5 text-red-300" },
@@ -22,17 +23,28 @@ export function CategoriaIcono({ slug, className = "size-5" }: { slug: string; c
   return <Icon className={className} strokeWidth={1.75} />;
 }
 
-/** Imagen ilustrativa del producto basada en su categoría. */
-export function ProductoVisual({ slug, sku, size = "md" }: { slug: string; sku?: string; size?: "sm" | "md" | "lg" }) {
+/** Imagen del producto: foto propia (imagen_url) o ilustración según el tipo de repuesto. */
+export function ProductoVisual({ slug, sku, nombre, imagen, size = "md" }: { slug: string; sku?: string; nombre?: string; imagen?: string | null; size?: "sm" | "md" | "lg" }) {
   const ui = CATEGORIA_UI[slug];
   const dims = { sm: "h-14 w-14 rounded-xl", md: "aspect-[4/3] w-full rounded-xl", lg: "aspect-square w-full rounded-2xl" }[size];
   const icon = { sm: "size-6", md: "size-12", lg: "size-24" }[size];
+  const src = nombre || imagen ? imagenProducto(nombre ?? "", imagen) : null;
+  const esFoto = Boolean(imagen);
   return (
     <div className={`relative grid shrink-0 place-items-center overflow-hidden bg-gradient-to-br ${ui?.tono ?? "from-ink-600 to-ink-800 text-ink-200"} ${dims}`}>
       <div className="grid-bg absolute inset-0 opacity-60" />
       <div className="absolute -right-6 -bottom-6 size-24 rounded-full border border-white/5" />
-      <CategoriaIcono slug={slug} className={`${icon} relative drop-shadow-[0_6px_20px_rgba(0,0,0,0.5)]`} />
-      {sku && size !== "sm" && <span className="mono absolute bottom-2 left-2.5 text-[10px] text-white/40">{sku}</span>}
+      {src ? (
+        <img
+          src={src}
+          alt={nombre ?? "Repuesto"}
+          loading="lazy"
+          className={esFoto ? "absolute inset-0 h-full w-full object-cover" : `relative object-contain transition duration-500 group-hover:scale-105 ${size === "sm" ? "h-11 w-11" : "h-[82%] w-[82%]"}`}
+        />
+      ) : (
+        <CategoriaIcono slug={slug} className={`${icon} relative drop-shadow-[0_6px_20px_rgba(0,0,0,0.5)]`} />
+      )}
+      {sku && size !== "sm" && <span className="mono absolute bottom-2 left-2.5 rounded bg-black/30 px-1.5 text-[10px] text-white/60">{sku}</span>}
     </div>
   );
 }

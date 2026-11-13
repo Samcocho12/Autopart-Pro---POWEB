@@ -23,7 +23,7 @@ function CartDrawer() {
             const { titulo, vehiculo } = partirNombre(i.nombre);
             return (
               <div key={i.id} className="flex gap-3 rounded-xl border border-ink-700 bg-ink-800/60 p-3">
-                <ProductoVisual slug={i.categoria_slug} size="sm" />
+                <ProductoVisual slug={i.categoria_slug} nombre={i.nombre} imagen={i.imagen_url} size="sm" />
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-semibold">{titulo}</p>
                   <p className="truncate text-xs text-ink-400">{i.fabricante}{vehiculo ? ` · ${vehiculo}` : ""}</p>

@@ -3,11 +3,12 @@ import { Link, useSearchParams } from "react-router-dom";
 import { ArrowLeftRight, Pencil, Plus, Search } from "lucide-react";
 import { Encabezado } from "./AdminLayout";
 import { MovimientoModal, ProductoFormModal } from "./forms";
-import { CategoriaIcono, Cargando, ErrorBox, Paginacion, StockBadge } from "../components/ui";
+import { Cargando, ErrorBox, Paginacion, StockBadge } from "../components/ui";
 import { useAuth } from "../context/AuthContext";
 import { api, qs } from "../lib/api";
 import { useFetch } from "../lib/useFetch";
 import { money, number, partirNombre } from "../lib/format";
+import { imagenProducto } from "../lib/imagenes";
 import type { Categoria, Pagina, ProductoDetalle, ProductoResumen } from "../lib/types";
 
 export default function Inventario() {
@@ -69,7 +70,7 @@ export default function Inventario() {
                   <tr key={p.id}>
                     <td>
                       <Link to={`/admin/inventario/${p.id}`} className="flex items-center gap-3 hover:text-signal">
-                        <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-ink-700 text-ink-200"><CategoriaIcono slug={p.categoria_slug} className="size-4" /></span>
+                        <img src={imagenProducto(p.nombre, p.imagen_url)} alt="" className="size-10 shrink-0 rounded-lg bg-ink-700 object-contain p-1" />
                         <span className="min-w-0">
                           <span className="block font-medium">{titulo}</span>
                           <span className="mono block text-xs text-ink-400">{p.sku}{vehiculo ? ` · ${vehiculo}` : ""}</span>

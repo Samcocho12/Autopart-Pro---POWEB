@@ -90,7 +90,7 @@ export default function Checkout() {
             <div className="max-h-80 space-y-3 overflow-y-auto pr-1">
               {items.map((i) => (
                 <div key={i.id} className="flex items-center gap-3">
-                  <ProductoVisual slug={i.categoria_slug} size="sm" />
+                  <ProductoVisual slug={i.categoria_slug} nombre={i.nombre} imagen={i.imagen_url} size="sm" />
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-medium">{partirNombre(i.nombre).titulo}</p>
                     <p className="mono text-xs text-ink-400">{i.cantidad} × {money(i.precio)}</p>

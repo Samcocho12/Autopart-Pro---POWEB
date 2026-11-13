@@ -20,6 +20,7 @@ Tienda en línea con buscador por **marca, modelo y año**, panel administrativo
 **Tienda**
 - Buscador avanzado: marca → modelo → año, texto libre, categoría, fabricante, precio, solo con stock y ordenamiento.
 - "Mi vehículo" persistente: la ficha de producto indica si el repuesto es compatible con tu carro.
+- Ilustración técnica propia para cada tipo de repuesto (38 SVG) y opción de cargar una foto real por URL desde el panel.
 - Carrito, checkout con cálculo de IVA y redirección al checkout de Wompi; página de resultado que confirma el pago con Wompi.
 
 **Panel administrativo** (`/admin`)
@@ -58,4 +59,5 @@ Usuarios de prueba: `admin@autopart.pro` / `Admin123*` · `vendedor@autopart.pro
 | `npm run build` | Compila TypeScript y genera `dist/` |
 | `npm run db:setup` | Ejecuta `schema.sql` + `seed.sql` en `DATABASE_URL` |
 | `npm run db:seed` | Regenera `database/seed.sql` |
+| `npm run img:generate` | Regenera las ilustraciones SVG de `public/img/repuestos/` |
 | `npm start` | Inicia solo la API |
