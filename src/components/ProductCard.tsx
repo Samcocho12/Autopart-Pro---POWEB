@@ -22,7 +22,7 @@ export default function ProductCard({ p, i = 0 }: { p: ProductoResumen; i?: numb
           <span className="font-semibold text-signal">{p.fabricante}</span>
           <span className="text-ink-400">{p.categoria}</span>
         </div>
-        <Link to={`/producto/${p.id}`} className="font-semibold leading-snug text-ink-100 transition group-hover:text-white">{titulo}</Link>
+        <Link to={`/producto/${p.id}`} className="font-semibold leading-snug text-ink-100 transition group-hover:text-signal">{titulo}</Link>
         {vehiculo && <p className="mt-1 text-xs text-ink-300">{vehiculo}</p>}
         <div className="mt-auto flex items-end justify-between gap-2 pt-4">
           <div>

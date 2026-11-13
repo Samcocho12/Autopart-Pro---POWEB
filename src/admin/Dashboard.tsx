@@ -9,9 +9,9 @@ import { compactMoney, fecha, money, number } from "../lib/format";
 import type { Dashboard as D } from "../lib/types";
 
 const tooltip = {
-  contentStyle: { background: "#13171c", border: "1px solid #262d36", borderRadius: 12, fontSize: 12 },
-  labelStyle: { color: "#8b95a3" },
-  itemStyle: { color: "#e6eaef" },
+  contentStyle: { background: "#ffffff", border: "1px solid #e6e3dd", borderRadius: 12, fontSize: 12 },
+  labelStyle: { color: "#7a766f" },
+  itemStyle: { color: "#141414" },
 };
 
 function Kpi({ icon: Icon, label, valor, sub, tono = "text-signal" }: { icon: typeof Wallet; label: string; valor: string; sub?: string; tono?: string }) {
@@ -61,15 +61,15 @@ export default function Dashboard() {
               <AreaChart data={serie} margin={{ left: 0, right: 8, top: 8 }}>
                 <defs>
                   <linearGradient id="gv" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#ff6a1a" stopOpacity={0.45} />
-                    <stop offset="100%" stopColor="#ff6a1a" stopOpacity={0} />
+                    <stop offset="0%" stopColor="#e5322b" stopOpacity={0.45} />
+                    <stop offset="100%" stopColor="#e5322b" stopOpacity={0} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid stroke="#1b2027" vertical={false} />
-                <XAxis dataKey="dia" tick={{ fill: "#5d6876", fontSize: 11 }} tickLine={false} axisLine={false} interval={4} />
-                <YAxis tickFormatter={(v) => compactMoney(v)} tick={{ fill: "#5d6876", fontSize: 11 }} tickLine={false} axisLine={false} width={60} />
+                <CartesianGrid stroke="#ece9e3" vertical={false} />
+                <XAxis dataKey="dia" tick={{ fill: "#7a766f", fontSize: 11 }} tickLine={false} axisLine={false} interval={4} />
+                <YAxis tickFormatter={(v) => compactMoney(v)} tick={{ fill: "#7a766f", fontSize: 11 }} tickLine={false} axisLine={false} width={60} />
                 <Tooltip {...tooltip} formatter={(v) => [money(Number(v)), "Ventas"]} />
-                <Area type="monotone" dataKey="total" stroke="#ff6a1a" strokeWidth={2} fill="url(#gv)" />
+                <Area type="monotone" dataKey="total" stroke="#e5322b" strokeWidth={2} fill="url(#gv)" />
               </AreaChart>
             </ResponsiveContainer>
           </div>

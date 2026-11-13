@@ -11,10 +11,10 @@ function CartDrawer() {
   const nav = useNavigate();
   return (
     <>
-      <div className={`fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition ${open ? "opacity-100" : "pointer-events-none opacity-0"}`} onClick={() => setOpen(false)} />
+      <div className={`fixed inset-0 z-40 bg-black/40 backdrop-blur-sm transition ${open ? "opacity-100" : "pointer-events-none opacity-0"}`} onClick={() => setOpen(false)} />
       <aside className={`fixed top-0 right-0 z-50 flex h-full w-full max-w-md flex-col border-l border-ink-700 bg-ink-850 shadow-2xl transition-transform duration-300 ${open ? "translate-x-0" : "translate-x-full"}`}>
         <div className="flex items-center justify-between border-b border-ink-700 px-5 py-4">
-          <h2 className="font-display text-lg font-bold">Tu carrito <span className="mono text-sm text-ink-400">({count})</span></h2>
+          <h2 className="font-display text-lg font-black uppercase">Tu carrito <span className="mono text-sm text-ink-400">({count})</span></h2>
           <button onClick={() => setOpen(false)} className="rounded-lg p-1.5 hover:bg-ink-700" aria-label="Cerrar carrito"><X className="size-5" /></button>
         </div>
         <div className="flex-1 space-y-3 overflow-y-auto p-5">
@@ -66,42 +66,64 @@ export default function StoreLayout() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="sticky top-0 z-30 border-b border-ink-700/80 bg-ink-900/80 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3 sm:px-6">
+      <div className="bg-carbon text-white">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2.5 font-display text-[10px] font-bold tracking-[0.28em] uppercase sm:px-6">
+          <span className="text-signal">Repuestos que se ajustan a tu carro</span>
+          <span className="hidden text-white/80 sm:block">Envíos a toda Colombia · Pago seguro Wompi</span>
+        </div>
+      </div>
+      <header className="sticky top-0 z-30 border-b border-ink-700 bg-ink-900/90 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-4 sm:px-6">
           <Link to="/" className="shrink-0"><Logo /></Link>
-          <nav className="ml-4 hidden items-center gap-1 text-sm md:flex">
+          <nav className="ml-6 hidden items-center gap-1 font-display text-[13px] font-bold md:flex">
             {[["/", "Inicio"], ["/catalogo", "Catálogo"]].map(([to, t]) => (
-              <NavLink key={to} to={to} end className={({ isActive }) => `rounded-lg px-3 py-2 transition ${isActive ? "text-ink-100" : "text-ink-300 hover:text-ink-100"}`}>{t}</NavLink>
+              <NavLink key={to} to={to} end className={({ isActive }) => `relative px-3 py-2 transition ${isActive ? "text-ink-100 after:absolute after:inset-x-3 after:-bottom-0.5 after:h-0.5 after:bg-signal" : "text-ink-300 hover:text-ink-100"}`}>{t}</NavLink>
             ))}
           </nav>
-          <form onSubmit={buscar} className="relative ml-auto hidden max-w-md flex-1 sm:block">
+          <form onSubmit={buscar} className="relative ml-auto hidden max-w-sm flex-1 lg:block">
             <Search className="pointer-events-none absolute top-1/2 left-3.5 size-4 -translate-y-1/2 text-ink-400" />
-            <input className="input pl-10" placeholder="Busca por nombre, SKU o marca…" value={q} onChange={(e) => setQ(e.target.value)} />
+            <input className="input bg-ink-950 pl-10" placeholder="Busca por nombre, SKU o marca…" value={q} onChange={(e) => setQ(e.target.value)} />
           </form>
           {vehiculo && (
-            <Link to={`/catalogo?${vehiculoParams(vehiculo)}`} className="hidden items-center gap-2 rounded-xl border border-signal/30 bg-signal/10 px-3 py-2 text-xs font-medium text-signal-soft lg:flex">
+            <Link to={`/catalogo?${vehiculoParams(vehiculo)}`} className="hidden items-center gap-2 rounded-lg border border-signal/30 bg-signal/5 px-3 py-2 font-display text-xs font-bold text-signal xl:flex">
               <CarFront className="size-4" />{etiquetaVehiculo(vehiculo)}
             </Link>
           )}
-          <Link to="/admin" className="btn-ghost hidden px-3 sm:inline-flex" title="Panel administrativo"><LayoutDashboard className="size-4" /></Link>
-          <button onClick={() => setOpen(true)} className="btn-ghost relative ml-auto px-3 sm:ml-0" aria-label="Abrir carrito">
+          <Link to="/admin" className="hidden items-center gap-2 rounded-lg border-2 border-ink-100 px-4 py-2 font-display text-[13px] font-bold transition hover:bg-ink-100 hover:text-white sm:inline-flex lg:ml-0 ml-auto">
+            <LayoutDashboard className="size-4" />Panel
+          </Link>
+          <button onClick={() => setOpen(true)} className="relative ml-auto grid size-11 place-items-center rounded-lg bg-ink-100 text-white transition hover:bg-signal sm:ml-0" aria-label="Abrir carrito">
             <ShoppingCart className="size-4" />
-            {count > 0 && <span className="mono absolute -top-1.5 -right-1.5 grid size-5 place-items-center rounded-full bg-signal text-[10px] font-bold text-ink-950">{count}</span>}
+            {count > 0 && <span className="mono absolute -top-1.5 -right-1.5 grid size-5 place-items-center rounded-full bg-signal text-[10px] font-bold text-white ring-2 ring-ink-900">{count}</span>}
           </button>
         </div>
       </header>
 
       <main className="flex-1"><Outlet /></main>
 
-      <footer className="mt-20 border-t border-ink-700/80">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 py-10 text-sm text-ink-400 sm:flex-row sm:items-center sm:px-6">
-          <div className="space-y-2">
-            <Logo />
-            <p>Inventario inteligente y venta técnica de repuestos automotrices.</p>
+      <footer className="mt-24 bg-carbon text-white">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr]">
+          <div className="space-y-4">
+            <Logo claro />
+            <p className="max-w-sm text-white/60">Inventario inteligente y venta técnica de repuestos automotrices. El repuesto correcto, la primera vez.</p>
           </div>
-          <div className="space-y-1 sm:text-right">
-            <p>Pagos procesados con <span className="font-semibold text-ink-200">Wompi</span> (entorno Sandbox)</p>
-            <p>Proyecto final · Programación orientada a la Web · {new Date().getFullYear()}</p>
+          <div>
+            <p className="kicker mb-4 text-signal">Tienda</p>
+            <ul className="space-y-2 text-white/70">
+              <li><Link to="/catalogo" className="hover:text-white">Catálogo completo</Link></li>
+              <li><Link to="/catalogo?enStock=1" className="hover:text-white">Con stock disponible</Link></li>
+              <li><Link to="/admin" className="hover:text-white">Panel administrativo</Link></li>
+            </ul>
+          </div>
+          <div>
+            <p className="kicker mb-4 text-signal">Pagos</p>
+            <p className="text-white/70">Procesados con <span className="font-bold text-white">Wompi</span> (entorno Sandbox). Tarjeta, Nequi y PSE.</p>
+          </div>
+        </div>
+        <div className="border-t border-white/10">
+          <div className="mx-auto flex max-w-7xl flex-wrap justify-between gap-2 px-4 py-5 font-display text-[10px] font-bold tracking-[0.25em] text-white/40 uppercase sm:px-6">
+            <span>AutoPart Pro · Colombia</span>
+            <span>Proyecto final · Programación orientada a la Web · {new Date().getFullYear()}</span>
           </div>
         </div>
       </footer>
